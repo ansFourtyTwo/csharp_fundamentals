@@ -20,6 +20,7 @@ public class BookTests
         Assert.InRange<double>(6.7, 6.69, 6.71);
         Assert.Equal(1.2, stats.LowestGrade, 1);
         Assert.Equal(12.2, stats.HighestGrade, 1);
+        Assert.Equal('F', stats.Letter);
     }
 
     [Fact]
