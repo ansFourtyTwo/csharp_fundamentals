@@ -21,4 +21,31 @@ public class BookTests
         Assert.Equal(1.2, stats.LowestGrade, 1);
         Assert.Equal(12.2, stats.HighestGrade, 1);
     }
+
+    [Fact]
+    public void CanAddValidGrades()
+    {
+        var book = new Book("Test Book");
+        book.AddGrade(10.0);
+        book.AddGrade(90.0);
+
+        var stats = book.GetStatistics();
+        Assert.Equal(10.0, stats.LowestGrade, 1);
+        Assert.Equal(90.0, stats.HighestGrade, 1);
+    }
+
+    [Fact]
+    public void CannotAddInvalidGrades()
+    {
+        var book = new Book("Test Book");
+        book.AddGrade(10.0);
+        book.AddGrade(90.0);
+        book.AddGrade(105.0);
+
+        var stats = book.GetStatistics();
+        Assert.Equal(10.0, stats.LowestGrade, 1);
+        Assert.Equal(90.0, stats.HighestGrade, 1);
+    }
+
+
 }
