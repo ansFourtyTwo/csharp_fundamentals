@@ -10,24 +10,33 @@ namespace GradeBook
             var book = new Book("Simons book");
 
             string input;
-            do
+            while (true)
             {
                 Console.WriteLine("Please entere a grade or 'q' to quit");
                 input = Console.ReadLine();
+
+                if (input == "q")
+                {
+                    break;
+                }
                 try
                 {
                     var grade = double.Parse(input);
                     book.AddGrade(grade);
                 }
-                catch (Exception ex)
+                catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
-                    continue;
                 }
-            } while (input != "q" && input != "Q");
+                catch (FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             var stats = book.GetStatistics();
 
+            Console.WriteLine($"For the book {book.Name}");
             Console.WriteLine($"Average grade is: {stats.Average:N2}");
             Console.WriteLine($"Lowest grade is: {stats.LowestGrade:N2}");
             Console.WriteLine($"Highest grade is: {stats.HighestGrade:N2}");
