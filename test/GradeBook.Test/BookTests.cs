@@ -41,7 +41,9 @@ public class BookTests
         var book = new Book("Test Book");
         book.AddGrade(10.0);
         book.AddGrade(90.0);
-        book.AddGrade(105.0);
+        Assert.Throws<ArgumentException>(
+            () => book.AddGrade(105.0)
+        );
 
         var stats = book.GetStatistics();
         Assert.Equal(10.0, stats.LowestGrade, 1);
