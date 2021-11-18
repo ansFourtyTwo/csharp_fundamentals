@@ -13,10 +13,9 @@ namespace GradeBook
             PrintStatistics(book);
         }
 
-        private static void PrintStatistics(InMemoryBook book)
+        private static void PrintStatistics(IBook book)
         {
             var stats = book.GetStatistics();
-
             Console.WriteLine($"For the book {book.Name}");
             Console.WriteLine($"Average grade is: {stats.Average:N2}");
             Console.WriteLine($"Lowest grade is: {stats.LowestGrade:N2}");
@@ -24,7 +23,7 @@ namespace GradeBook
             Console.WriteLine($"Letter grade is: {stats.Letter}");
         }
 
-        private static void EnterGrades(Book book)
+        private static void EnterGrades(IBook book)
         {
             while (true)
             {
