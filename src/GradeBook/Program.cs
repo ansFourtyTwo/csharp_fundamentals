@@ -7,13 +7,13 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new Book("Simons book");
+            var book = new InMemoryBook("Simons book");
             book.GradeAdded += OnGradeAdded;
             EnterGrades(book);
             PrintStatistics(book);
         }
 
-        private static void PrintStatistics(Book book)
+        private static void PrintStatistics(InMemoryBook book)
         {
             var stats = book.GetStatistics();
 

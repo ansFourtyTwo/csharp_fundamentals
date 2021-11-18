@@ -9,7 +9,7 @@ public class BookTests
     public void BookCalculatesGradeStatistics()
     {
         // arrange
-        var book = new Book("");
+        var book = new InMemoryBook("");
         book.AddGrade(1.2);
         book.AddGrade(12.2);
 
@@ -26,7 +26,7 @@ public class BookTests
     [Fact]
     public void CanAddValidGrades()
     {
-        var book = new Book("Test Book");
+        var book = new InMemoryBook("Test Book");
         book.AddGrade(10.0);
         book.AddGrade(90.0);
 
@@ -38,7 +38,7 @@ public class BookTests
     [Fact]
     public void CannotAddInvalidGrades()
     {
-        var book = new Book("Test Book");
+        var book = new InMemoryBook("Test Book");
         book.AddGrade(10.0);
         book.AddGrade(90.0);
         Assert.Throws<ArgumentException>(
