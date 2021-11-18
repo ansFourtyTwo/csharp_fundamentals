@@ -9,13 +9,27 @@ namespace GradeBook
         {
             var book = new Book("Simons book");
             book.GradeAdded += OnGradeAdded;
+            EnterGrades(book);
+            PrintStatistics(book);
+        }
 
+        private static void PrintStatistics(Book book)
+        {
+            var stats = book.GetStatistics();
 
-            string input;
+            Console.WriteLine($"For the book {book.Name}");
+            Console.WriteLine($"Average grade is: {stats.Average:N2}");
+            Console.WriteLine($"Lowest grade is: {stats.LowestGrade:N2}");
+            Console.WriteLine($"Highest grade is: {stats.HighestGrade:N2}");
+            Console.WriteLine($"Letter grade is: {stats.Letter}");
+        }
+
+        private static void EnterGrades(Book book)
+        {
             while (true)
             {
                 Console.WriteLine("Please entere a grade or 'q' to quit");
-                input = Console.ReadLine();
+                var input = Console.ReadLine();
 
                 if (input == "q")
                 {
@@ -35,14 +49,6 @@ namespace GradeBook
                     Console.WriteLine(ex.Message);
                 }
             }
-
-            var stats = book.GetStatistics();
-
-            Console.WriteLine($"For the book {book.Name}");
-            Console.WriteLine($"Average grade is: {stats.Average:N2}");
-            Console.WriteLine($"Lowest grade is: {stats.LowestGrade:N2}");
-            Console.WriteLine($"Highest grade is: {stats.HighestGrade:N2}");
-            Console.WriteLine($"Letter grade is: {stats.Letter}");
         }
 
         static void OnGradeAdded(object sender, EventArgs e)
