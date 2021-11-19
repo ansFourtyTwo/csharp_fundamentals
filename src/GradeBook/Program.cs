@@ -7,10 +7,15 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new InMemoryBook("Simons book");
-            book.GradeAdded += OnGradeAdded;
-            EnterGrades(book);
-            PrintStatistics(book);
+            // var book = new InMemoryBook("Simons book");
+            // book.GradeAdded += OnGradeAdded;
+            // EnterGrades(book);
+            // PrintStatistics(book);
+
+            var diskBook = new DiskBook("Harddrives book");
+            diskBook.GradeAdded += GradeAddedToDisk;
+            EnterGrades(diskBook);
+            PrintStatistics(diskBook);
         }
 
         private static void PrintStatistics(IBook book)
@@ -53,6 +58,11 @@ namespace GradeBook
         static void OnGradeAdded(object sender, EventArgs e)
         {
             Console.WriteLine($"A grade was miracly added. Holy fuck!");
+        }
+
+        static void GradeAddedToDisk(object sender, EventArgs e)
+        {
+            Console.WriteLine($"A grade was added to a file on disk. Holy fuck!");
         }
     }
 }
